@@ -87,8 +87,10 @@ case "$TARGET_CONTAINER" in
       -f ./Dockerfile.windows                \
       .
 
-    docker push "$RELEASE_ALLOY_IMAGE:$VERSION_TAG"
-    docker push "$RELEASE_ALLOY_IMAGE:$BRANCH_TAG"
+    if [[ $PUSH_ALLOY_IMAGE == "true"  ]]; then
+      docker push "$RELEASE_ALLOY_IMAGE:$VERSION_TAG"
+      docker push "$RELEASE_ALLOY_IMAGE:$BRANCH_TAG"
+    fi
     ;;
 
   alloy-cngcrypto)
@@ -108,8 +110,10 @@ case "$TARGET_CONTAINER" in
       -f ./Dockerfile.windows                \
       .
 
-    docker push "$RELEASE_ALLOY_IMAGE:$VERSION_TAG"
-    docker push "$RELEASE_ALLOY_IMAGE:$BRANCH_TAG"
+    if [[ $PUSH_ALLOY_IMAGE == "true"  ]]; then
+      docker push "$RELEASE_ALLOY_IMAGE:$VERSION_TAG"
+      docker push "$RELEASE_ALLOY_IMAGE:$BRANCH_TAG"
+    fi
     ;;
 
   alloy-devel)
@@ -123,8 +127,10 @@ case "$TARGET_CONTAINER" in
       -f ./Dockerfile.windows              \
       .
 
-    docker push "$DEVEL_ALLOY_IMAGE:$VERSION_TAG"
-    docker push "$DEVEL_ALLOY_IMAGE:$BRANCH_TAG"
+    if [[ $PUSH_ALLOY_IMAGE == "true"  ]]; then
+      docker push "$DEVEL_ALLOY_IMAGE:$VERSION_TAG"
+      docker push "$DEVEL_ALLOY_IMAGE:$BRANCH_TAG"
+    fi
     ;;
 
   alloy-devel-cngcrypto)
@@ -144,8 +150,10 @@ case "$TARGET_CONTAINER" in
       -f ./Dockerfile.windows              \
       .
 
-    docker push "$DEVEL_ALLOY_IMAGE:$VERSION_TAG"
-    docker push "$DEVEL_ALLOY_IMAGE:$BRANCH_TAG"
+    if [[ $PUSH_ALLOY_IMAGE == "true"  ]]; then
+      docker push "$DEVEL_ALLOY_IMAGE:$VERSION_TAG"
+      docker push "$DEVEL_ALLOY_IMAGE:$BRANCH_TAG"
+    fi
     ;;
 
   *)

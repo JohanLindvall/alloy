@@ -1,21 +1,5 @@
 ---
 kind: pipeline
-name: Lint
-platform:
-  arch: amd64
-  os: linux
-steps:
-- commands:
-  - apt-get update -y && apt-get install -y libsystemd-dev
-  - make lint
-  image: grafana/alloy-build-image:v0.1.17
-  name: Lint
-trigger:
-  event:
-  - pull_request
-type: docker
----
-kind: pipeline
 name: Test
 platform:
   arch: amd64
@@ -92,32 +76,6 @@ type: docker
 volumes:
 - host:
     path: /var/run/docker.sock
-  name: docker
----
-kind: pipeline
-name: Check Windows container (grafana/alloy)
-platform:
-  arch: amd64
-  os: windows
-  version: "1809"
-steps:
-- commands:
-  - '& "C:/Program Files/git/bin/bash.exe" -c "make alloy-image-windows"'
-  image: grafana/alloy-build-image:v0.1.8-windows
-  name: Build container
-  volumes:
-  - name: docker
-    path: //./pipe/docker_engine/
-trigger:
-  paths:
-  - Dockerfile.windows
-  - tools/ci/docker-containers-windows
-  ref:
-  - refs/heads/main
-type: docker
-volumes:
-- host:
-    path: //./pipe/docker_engine/
   name: docker
 ---
 kind: pipeline
